@@ -5,7 +5,7 @@ const UserInfo = ({ userinfo }) => (
     <div className='user-info'>
         <img src={ userinfo.avatar } alt=""/>
 
-        <h2><a href={`http://github.com/${userinfo.login}`}>{ userinfo.username }</a></h2>
+        <h2 className='username'><a href={`http://github.com/${userinfo.login}`}>{ userinfo.username }</a></h2>
         
         <ul className='repos-info'>
             <li> Repositórios: { userinfo.repos }</li>

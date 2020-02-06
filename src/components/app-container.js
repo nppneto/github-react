@@ -5,25 +5,32 @@ import UserInfos from './user-infos';
 import SearchBar from './search-bar';
 import PropTypes from 'prop-types';
 
+import '../App.css';
+
 const AppContainer = ({ userinfo, repos, starred, handleSearch, getRepos, getStarred }) => (
     <div className='App'>    
         <SearchBar handleSearch={ handleSearch }/>
         {!!userinfo && <UserInfos userinfo={ userinfo } />}
         {!!userinfo && <Actions getRepos={ getRepos } getStarred={ getStarred } />}
+        
+        {/* {<UserInfos userinfo={ userinfo } />}
+        {<Actions getRepos={ getRepos } getStarred={ getStarred } />} */}
 
-        {!!repos.length && 
-        <Repos 
-            className="repos" 
-            title="Repositórios"
-            repos={repos}/>
-        }
-
-        {!!starred.length &&
+        <div className="row">
+            {!!repos.length && 
             <Repos 
-            className="starred" 
-            title="Favoritos" 
-            repos={starred}/>
-        }
+                className="repos" 
+                title="Repositórios"
+                repos={repos}/>
+            }
+
+            {!!starred.length &&
+                <Repos 
+                className="starred" 
+                title="Favoritos" 
+                repos={starred}/>
+            }
+        </div>
     </div>
 );
 

@@ -1,12 +1,51 @@
-body {
-    margin: 0;
+.search input{
+    border: 2px solid black;
+    font-size: 20px;
+    margin-left: 25%;
+    text-align: center;
+    width: 50%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.user-info {
+    margin-left: 25%;
+}
+
+img {
+    border: 2px solid black;
+    color: black;
+}
+
+h2 {
+    font-style: normal;
+}
+
+.repos-info {
+    margin-left: -20px;
+}
+
+.actions {
+    margin-left: 25%;
+}
+
+.btn {
+    font-size: 15px;
+    margin-right: 5px;
+    width: 120px;
+    height: 50px;
+    background-color: greenyellow;
+    border: 2px solid black;
+}
+
+.repos {
+    margin-left: 50%;
+}
+
+.row {
+    display: grid;
+    grid-auto-columns: center;
+    grid-template-columns: repeat(2,4fr);
+}
+
+.row > div {
+    grid-gap: 1rm;
 }

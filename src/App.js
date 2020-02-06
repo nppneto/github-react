@@ -12,13 +12,21 @@ class App extends Component {
         }
     }
 
+    getGitHubApiUrl (current_user, type = null) {
+        let api_url = `https://api.github.com/users/${current_user}`;
+        if (type !== null) {
+            api_url = `https://api.github.com/users/${current_user}/${type}`;
+        }
+        return api_url;
+    }
+
     handleSearch (e) {
         const value = e.target.value;
-        const keyCode = e.which || e.keyCode;
+        const keyCode = e.keyCode;
         const ENTER = 13;
 
         if (keyCode === ENTER) {
-            axios.get(`http://api.github.com/users/${value}`)
+            axios.get(this.getGitHubApiUrl(value))
             .then((response) => {
                 this.setState({
                     userinfo: {
@@ -28,16 +36,19 @@ class App extends Component {
                         repos: response.data.public_repos,
                         followers: response.data.followers,
                         following: response.data.following
-                    }
+                    },
+                    // Para limpar os repositórios e favoritos
+                    // Quando for feita uma nova pesquisa
+                    repos: [],
+                    starred: []
                 })
             })
         }
     }
 
     getRepos (type) {
-        let current_user = this.state.userinfo.login;
-        let endpoint = `https://api.github.com/users/${current_user}/${type}`;
-        axios.get(endpoint)
+        const current_user = this.state.userinfo.login;
+        axios.get(this.getGitHubApiUrl(current_user, type))
         .then((response) => {
             this.setState({
                 [type]: response.data.map((repo) => ({
@@ -45,9 +56,8 @@ class App extends Component {
                     name: repo.name,
                     link: repo.html_url
                 }))
-            })
-            console.log(this.state.repos);
-        })
+            });
+        });
     }
     
     render () {
