@@ -34,6 +34,7 @@ h2 {
     height: 50px;
     background-color: greenyellow;
     border: 2px solid black;
+    cursor: pointer;
 }
 
 .loading {
